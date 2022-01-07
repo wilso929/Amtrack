@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>List</title>
+</head>
+<body>
+    <h1>Item List</h1>
+    <ul></ul>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+
+        ipcRenderer.on('item:add', function(e, item){
+            const li = document.createElement('li');
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        });
+
+        ipcRenderer.on('item:clear', function(){
+            ul.innerHTML = '';
+        });
+
+
+        //remove item
+
+        ul.addEventListener('dblclick', removeitem);
+
+        function removeitem(e){;
+            console.log(e.target.textContent)
+            ipcRenderer.send('item:remove', e.target.textContent);
+            e.target.remove();
+        }
+    </script>
+</body>
+</html>

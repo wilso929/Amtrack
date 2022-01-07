@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Item</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Enter Url</label>
+            <input type="text" id='item' autofocus>
+            <label>Enter Price</label>
+            <input type="text" id='price' autofocus>
+        </div>
+        <button type="submit">Add Item</button>
+    </form>
+    <script type="module">
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+        function submitForm(e){
+            e.preventDefault();
+            const item = document.querySelector('#item').value;
+            const price = document.querySelector('#price').value;
+
+            const data = {Link: item, Price: parseFloat(price)}
+
+
+        }
+    </script>
+</body>
+</html>
